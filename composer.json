@@ -12,6 +12,9 @@
     "minimum-stability": "dev",
     "require": {},
     "autoload": {
-        "files": ["src/AppData.php"]
+        "psr-0": {
+            "Ogmudebone\\" : "src/"
+        },
+        "files" : ["src/init.php"]
     }
 }

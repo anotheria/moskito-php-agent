@@ -52,4 +52,3 @@ class AppData implements JsonSerializable
         ];
     }
 }
-AppData::initAppDataCollection();
