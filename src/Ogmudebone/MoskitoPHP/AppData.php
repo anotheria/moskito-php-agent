@@ -2,6 +2,8 @@
 
 namespace Ogmudebone\MoskitoPHP;
 
+use JsonSerializable;
+
 class AppData implements JsonSerializable
 {
 
