@@ -1,0 +1,19 @@
+{
+    "name": "ogmudebone/moskito-php",
+    "description": "moskito monitoring for php application",
+    "type": "library",
+    "license": "no",
+    "authors": [
+        {
+            "name": "The Satan",
+            "email": "submitthesatan666@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload" : {
+        "psr-4" : {
+            "ogmudebone/moskito-php" : "src"
+        }
+    }
+}
