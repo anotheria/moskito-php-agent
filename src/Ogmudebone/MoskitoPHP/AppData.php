@@ -7,6 +7,8 @@ use JsonSerializable;
 class AppData implements JsonSerializable
 {
 
+    const PATH_TO_ROOT = __DIR__ . "../../../../../../../";
+
     private $memoryUsage;
     private $peakMemoryUsage;
     //private $systemLoad;
@@ -40,7 +42,7 @@ class AppData implements JsonSerializable
     }
 
     private function save(){
-        file_put_contents("app-data.json", json_encode($this));
+        file_put_contents(AppData::PATH_TO_ROOT . "app-data.json", json_encode($this));
     }
 
     public function jsonSerialize()
