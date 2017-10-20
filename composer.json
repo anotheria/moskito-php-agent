@@ -11,9 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {},
-    "autoload" : {
-        "psr-0" : {
-            "MoskitoPHP\\" : "src/"
-        }
+    "autoload": {
+        "psr-4": {"Ogmudebone\\MoskitoPHP\\": "src/"}
     }
 }

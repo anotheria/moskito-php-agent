@@ -1,6 +1,6 @@
 <?php
 
-namespace MoskitoPHP;
+namespace Ogmudebone\MoskitoPHP;
 
 class AppData implements JsonSerializable
 {
