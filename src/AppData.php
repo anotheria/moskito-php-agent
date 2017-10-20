@@ -1,5 +1,7 @@
 <?php
 
+namespace Ogmudebone\MoskitoPHP;
+
 class AppData implements JsonSerializable
 {
 
