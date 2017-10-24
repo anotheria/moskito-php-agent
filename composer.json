@@ -2,16 +2,16 @@
     "name": "ogmudebone/moskito-php",
     "description": "moskito monitoring for php application",
     "type": "library",
-    "license": "no",
+    "license": "not yet",
     "authors": [
         {
-            "name": "The Satan",
-            "email": "submitthesatan666@gmail.com"
+            "name": "",
+            "email": ""
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "videlalvaro/php-amqplib": "2.2.*"
+        "php-amqplib/php-amqplib": "2.7.*"
     },
     "autoload": {
         "psr-0": {

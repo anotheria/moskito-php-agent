@@ -4,6 +4,7 @@ namespace Ogmudebone\MoskitoPHP;
 
 use JsonSerializable;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 
 class AppData implements JsonSerializable
@@ -47,7 +48,8 @@ class AppData implements JsonSerializable
 
         $connection = new AMQPStreamConnection('localhost', 5672, 'test', 'test');
         $channel = $connection->channel();
-        $channel->basic_publish(json_encode($this));
+        $message = new AMQPMessage(json_encode($this));
+        $channel->basic_publish($message);
 
         $channel->close();
         $connection->close();
