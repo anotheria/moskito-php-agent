@@ -26,7 +26,9 @@ class ExecutionProducer extends MoskitoPHPProducer
     public function __construct(){
         parent::__construct('php-execution', 'php', 'php');
         $this->currentRequestStat = $this->getStat(
-            new PHPExecutionStats($_SERVER['REQUEST_URI'])
+            new PHPExecutionStats(
+                array_key_exists('REQUEST_URI', $_SERVER) ? $_SERVER['REQUEST_URI'] : 'Undefined'
+            )
         );
     }
 
