@@ -15,18 +15,6 @@ class PHPInfoSnapshot extends PHPSnapshot
     private $createdAt;
 
     /**
-     * @inheritdoc
-     */
-    public function jsonSerialize()
-    {
-        return [
-            'phpVersion' => $this->phpVersion,
-            'hostName'   => $this->hostName,
-            'createdAt'  => $this->createdAt
-        ];
-    }
-
-    /**
      * @param mixed $phpVersion
      */
     public function setPhpVersion($phpVersion)
@@ -50,8 +38,8 @@ class PHPInfoSnapshot extends PHPSnapshot
         $this->createdAt = $createdAt;
     }
 
-    public function getSnapshotId()
+    public function getProducerId()
     {
-        return 'info';
+        return 'php-info';
     }
 }

@@ -13,21 +13,6 @@ class PHPExecutionSnapshot extends PHPSnapshot
     private $requestUri;
 
     /**
-     * @inheritdoc
-     * return array
-     */
-    public function jsonSerialize()
-    {
-        return [
-            "memoryUsage"        => $this->memoryUsage,
-            "requestPath"        => $this->requestUri,
-            "peakMemoryUsage"    => $this->peakMemoryUsage,
-            "executionStartTime" => $this->executionStartTime,
-            "executionEndTime"   => $this->executionEndTime
-        ];
-    }
-
-    /**
      * @param mixed $executionStartTime
      */
     public function setExecutionStartTime($executionStartTime)
@@ -67,9 +52,9 @@ class PHPExecutionSnapshot extends PHPSnapshot
         $this->requestUri = $requestUri;
     }
 
-    public function getSnapshotId()
+    public function getProducerId()
     {
-        return 'execution';
+        return 'php-execution';
     }
 
 }

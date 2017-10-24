@@ -92,7 +92,7 @@ class MoskitoPHP
             $channel->batch_basic_publish(
                 $message,
                 $config->getRabbitmqTopicName(),
-                'moskito.' . $snapshot->getSnapshotId()
+                'moskito.' . $snapshot->getProducerId()
                 );
 
         }
