@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: submi
- * Date: 10/24/2017
- * Time: 5:23 PM
- */
+
 
 namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
 use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
+use Ogmudebone\MoskitoPHP\producers\PHPExecutionStats;
 
 /**
  * Class ExecutionProducer
@@ -28,7 +24,8 @@ class ExecutionProducer extends MoskitoPHPProducer
 
     public function __construct(){
         parent::__construct('php-execution', 'php', 'php');
-        $this->currentRequestStat = $this->addStat($_SERVER['REQUEST_URI']);
+        $this->currentRequestStat = $this->addStat(
+            new PHPExecutionStats($_SERVER['REQUEST_URI']));
     }
 
     public function startCountExecutionTime(){
