@@ -42,7 +42,6 @@ class MoskitoPHP
 
         $infoSnapshot->setHostName(gethostname());
         $infoSnapshot->setPhpVersion(phpversion());
-        $infoSnapshot->setCreatedAt(time());
 
         $this->addSnapshot($infoSnapshot);
 
