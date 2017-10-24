@@ -2,9 +2,8 @@
 
 namespace Ogmudebone\MoskitoPHP;
 
-use Ogmudebone\MoskitoPHP\Snapshots\PHPExecutionSnapshot;
-use Ogmudebone\MoskitoPHP\Snapshots\PHPInfoSnapshot;
-use Ogmudebone\MoskitoPHP\Snapshots\PHPSnapshot;
+use Ogmudebone\MoskitoPHP\producers\builtin\ExecutionProducer;
+use Ogmudebone\MoskitoPHP\producers\ProducersRepository;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
@@ -12,14 +11,15 @@ class MoskitoPHP
 {
 
     /**
-     * @var PHPSnapshot[] $snapshots
-     */
-    private $snapshots = [];
-
-    /**
      * @var MoskitoPHP $instance
      */
     private static $instance;
+
+    private $producersRepository;
+    /**
+     * @var ExecutionProducer $executionProducer
+     */
+    private $executionProducer;
 
     public static function init(){
 
@@ -27,43 +27,8 @@ class MoskitoPHP
         $instance = MoskitoPHP::$instance;
 
         register_shutdown_function(function() use ($instance) {
+            $instance->executionProducer->endCountExecutionTime();
             $instance->sendSnapshots();
-        });
-
-    }
-
-    private function addSnapshot(PHPSnapshot $snapshot){
-        $this->snapshots[] = $snapshot;
-    }
-
-    private function collectPHPInfoSnapshot(){
-
-        $infoSnapshot = new PHPInfoSnapshot();
-
-        $infoSnapshot->setHostName(gethostname());
-        $infoSnapshot->setPhpVersion(phpversion());
-
-        $this->addSnapshot($infoSnapshot);
-
-    }
-
-    private function collectPHPExecutionSnapshot(){
-
-        $startExecutionTime = time();
-        $_this = $this;
-
-        register_shutdown_function(function() use ($startExecutionTime, $_this) {
-
-            $executionSnapshot = new PHPExecutionSnapshot();
-
-            $executionSnapshot->setExecutionStartTime($startExecutionTime);
-            $executionSnapshot->setExecutionEndTime(time());
-            $executionSnapshot->setMemoryUsage(memory_get_usage());
-            $executionSnapshot->setPeakMemoryUsage(memory_get_peak_usage());
-            $executionSnapshot->setRequestUri($_SERVER['REQUEST_URI']);
-
-            $_this->addSnapshot($executionSnapshot);
-
         });
 
     }
@@ -85,13 +50,13 @@ class MoskitoPHP
             $config->getRabbitmqTopicName(), 'topic', false, false, false
         );
 
-        foreach ($this->snapshots as $snapshot) {
+        foreach ($this->producersRepository->getProducers() as $producer) {
 
-            $message = new AMQPMessage(json_encode($snapshot));
+            $message = new AMQPMessage(json_encode($producer));
             $channel->batch_basic_publish(
                 $message,
                 $config->getRabbitmqTopicName(),
-                'moskito.' . $snapshot->getProducerId()
+                'moskito.' . $producer->getProducerId()
                 );
 
         }
@@ -104,8 +69,19 @@ class MoskitoPHP
 
     private function __construct()
     {
-        $this->collectPHPInfoSnapshot();
-        $this->collectPHPExecutionSnapshot();
+        $this->producersRepository = new ProducersRepository();
+        $this->executionProducer = $this->producersRepository->addProducer(
+            new ExecutionProducer()
+        );
+        $this->executionProducer->startCountExecutionTime();
+    }
+
+    /**
+     * @return MoskitoPHP
+     */
+    public static function getInstance()
+    {
+        return self::$instance;
     }
 
 }
