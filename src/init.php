@@ -1,5 +1,2 @@
 <?php
-
-use Ogmudebone\MoskitoPHP\AppData;
-
-AppData::initAppDataCollection();
+\Ogmudebone\MoskitoPHP\MoskitoPHP::init();
