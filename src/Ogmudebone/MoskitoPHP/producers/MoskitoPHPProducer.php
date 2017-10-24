@@ -15,6 +15,7 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
     private $category;
     private $subsystem;
 
+    /** @var Stat[] $stats */
     private $stats = [];
 
     protected function __construct($producerId, $category, $subsystem)
@@ -35,11 +36,17 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
 
     public function jsonSerialize()
     {
+
+        $statsSerialized = [];
+
+        foreach ($this->stats as $stat)
+            $statsSerialized[] = $stat->jsonSerialize();
+
         return [
             'producerId' => $this->producerId,
             'category'   => $this->category,
             'subsystem'  => $this->subsystem,
-            'stats'      => $this->stats
+            'stats'      => $statsSerialized
         ];
     }
 

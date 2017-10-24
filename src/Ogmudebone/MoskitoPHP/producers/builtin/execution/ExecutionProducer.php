@@ -25,7 +25,8 @@ class ExecutionProducer extends MoskitoPHPProducer
     public function __construct(){
         parent::__construct('php-execution', 'php', 'php');
         $this->currentRequestStat = $this->addStat(
-            new PHPExecutionStats($_SERVER['REQUEST_URI']));
+            new PHPExecutionStats($_SERVER['REQUEST_URI'])
+        );
     }
 
     public function startCountExecutionTime(){
