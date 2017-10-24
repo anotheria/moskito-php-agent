@@ -53,4 +53,5 @@ class Stat implements \JsonSerializable
             'values' => $this->values
         ];
     }
+
 }
