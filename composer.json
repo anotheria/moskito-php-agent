@@ -5,8 +5,8 @@
     "license": "not yet",
     "authors": [
         {
-            "name": "",
-            "email": ""
+            "name": "foo",
+            "email": "no@ema.il"
         }
     ],
     "minimum-stability": "dev",
