@@ -37,8 +37,8 @@ class ExecutionProducer extends MoskitoPHPProducer
         $this->currentRequestStat->setTotalTime(
             // PHP has no long, but it can return msec time in float
             // so it possible to count execution time in milliseconds in float and
-            // cast it to int as nanoseconds
-            (int)((microtime(true) - $this->startTime) * 1000 * 1000 * 1000)
+            // cast it to int as milliseconds
+            (int)((microtime(true) - $this->startTime) * 1000)
         );
     }
 
