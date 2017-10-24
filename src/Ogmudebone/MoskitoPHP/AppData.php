@@ -3,6 +3,8 @@
 namespace Ogmudebone\MoskitoPHP;
 
 use JsonSerializable;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+
 
 class AppData implements JsonSerializable
 {
@@ -42,7 +44,15 @@ class AppData implements JsonSerializable
     }
 
     private function save(){
-        file_put_contents(AppData::PATH_TO_ROOT . "app-data.json", json_encode($this));
+
+        $connection = new AMQPStreamConnection('localhost', 5672, 'test', 'test');
+        $channel = $connection->channel();
+        $channel->basic_publish(json_encode($this));
+
+        $channel->close();
+        $connection->close();
+
+       // file_put_contents(AppData::PATH_TO_ROOT . "app-data.json", json_encode($this));
     }
 
     public function jsonSerialize()
