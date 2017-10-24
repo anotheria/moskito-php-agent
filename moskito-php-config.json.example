@@ -3,5 +3,5 @@
   "rabbitmq-port" : 5672,
   "rabbitmq-login" : "guest",
   "rabbitmq-password" : "guest",
-  "rabbitmq-topic-name" : "moskitophp"
+  "rabbitmq-queue-name" : "moskito-php"
 }

@@ -46,8 +46,8 @@ class MoskitoPHP
 
         $channel = $connection->channel();
 
-        $channel->exchange_declare(
-            $config->getRabbitmqTopicName(), 'topic', false, false, false
+        $channel->queue_declare($config->getRabbitmqQueueName(),
+            false, false, false, false
         );
 
         foreach ($this->producersRepository->getProducers() as $producer) {
@@ -55,8 +55,8 @@ class MoskitoPHP
             $message = new AMQPMessage(json_encode($producer));
             $channel->batch_basic_publish(
                 $message,
-                $config->getRabbitmqTopicName(),
-                'moskito.' . $producer->getProducerId()
+                '',
+                $config->getRabbitmqQueueName()
                 );
 
         }
