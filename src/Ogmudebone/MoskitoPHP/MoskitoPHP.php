@@ -39,7 +39,7 @@ class MoskitoPHP
 
         $infoSnapshot->setHostName(gethostname());
         $infoSnapshot->setPhpVersion(phpversion());
-        $infoSnapshot->setCreatedAt(microtime(true));
+        $infoSnapshot->setCreatedAt(microtime());
 
         $this->addSnapshot($infoSnapshot);
 
@@ -47,7 +47,7 @@ class MoskitoPHP
 
     private function collectPHPExecutionSnapshot(){
 
-        $startExecutionTime = microtime(true);
+        $startExecutionTime = microtime();
         $_this = $this;
 
         register_shutdown_function(function() use ($startExecutionTime, $_this) {
@@ -55,7 +55,7 @@ class MoskitoPHP
             $executionSnapshot = new PHPExecutionSnapshot();
 
             $executionSnapshot->setExecutionStartTime($startExecutionTime);
-            $executionSnapshot->setExecutionEndTime(microtime(true));
+            $executionSnapshot->setExecutionEndTime(microtime());
             $executionSnapshot->setMemoryUsage(memory_get_usage());
             $executionSnapshot->setPeakMemoryUsage(memory_get_peak_usage());
             $executionSnapshot->setRequestUri($_SERVER['REQUEST_URI']);
