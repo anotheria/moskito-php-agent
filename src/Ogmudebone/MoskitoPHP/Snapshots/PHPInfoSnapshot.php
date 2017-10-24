@@ -50,4 +50,8 @@ class PHPInfoSnapshot extends PHPSnapshot
         $this->createdAt = $createdAt;
     }
 
+    public function getSnapshotId()
+    {
+        return 'info';
+    }
 }

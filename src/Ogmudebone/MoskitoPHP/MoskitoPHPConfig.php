@@ -41,7 +41,7 @@ class MoskitoPHPConfig
     /**
      * @var string $rabbitmqPort name of queue where php snapshots placed
      */
-    private $rabbitmqQueueName;
+    private $rabbitmqTopicName;
 
     private function __construct()
     {
@@ -55,7 +55,7 @@ class MoskitoPHPConfig
         $this->rabbitmqPort      =  $configJson['rabbitmq-port'];
         $this->rabbitmqLogin     =  $configJson['rabbitmq-login'];
         $this->rabbitmqPassword  =  $configJson['rabbitmq-password'];
-        $this->rabbitmqQueueName =  $configJson['rabbitmq-queue-name'];
+        $this->rabbitmqTopicName =  $configJson['rabbitmq-topic-name'];
 
     }
 
@@ -75,9 +75,9 @@ class MoskitoPHPConfig
     /**
      * @return mixed
      */
-    public function getRabbitmqQueueName()
+    public function getRabbitmqTopicName()
     {
-        return $this->rabbitmqQueueName;
+        return $this->rabbitmqTopicName;
     }
 
     /**

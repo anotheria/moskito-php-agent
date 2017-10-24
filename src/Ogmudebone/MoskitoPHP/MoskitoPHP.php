@@ -11,6 +11,9 @@ use PhpAmqpLib\Message\AMQPMessage;
 class MoskitoPHP
 {
 
+    /**
+     * @var PHPSnapshot[] $snapshots
+     */
     private $snapshots = [];
 
     /**
@@ -39,7 +42,7 @@ class MoskitoPHP
 
         $infoSnapshot->setHostName(gethostname());
         $infoSnapshot->setPhpVersion(phpversion());
-        $infoSnapshot->setCreatedAt(microtime());
+        $infoSnapshot->setCreatedAt(time());
 
         $this->addSnapshot($infoSnapshot);
 
@@ -47,7 +50,7 @@ class MoskitoPHP
 
     private function collectPHPExecutionSnapshot(){
 
-        $startExecutionTime = microtime();
+        $startExecutionTime = time();
         $_this = $this;
 
         register_shutdown_function(function() use ($startExecutionTime, $_this) {
@@ -55,7 +58,7 @@ class MoskitoPHP
             $executionSnapshot = new PHPExecutionSnapshot();
 
             $executionSnapshot->setExecutionStartTime($startExecutionTime);
-            $executionSnapshot->setExecutionEndTime(microtime());
+            $executionSnapshot->setExecutionEndTime(time());
             $executionSnapshot->setMemoryUsage(memory_get_usage());
             $executionSnapshot->setPeakMemoryUsage(memory_get_peak_usage());
             $executionSnapshot->setRequestUri($_SERVER['REQUEST_URI']);
@@ -78,15 +81,19 @@ class MoskitoPHP
         );
 
         $channel = $connection->channel();
-        $channel->queue_declare(
-            $config->getRabbitmqQueueName(),
-            false, false, false, false
+
+        $channel->exchange_declare(
+            $config->getRabbitmqTopicName(), 'topic', false, false, false
         );
 
         foreach ($this->snapshots as $snapshot) {
 
             $message = new AMQPMessage(json_encode($snapshot));
-            $channel->batch_basic_publish($message, '', $config->getRabbitmqQueueName());
+            $channel->batch_basic_publish(
+                $message,
+                $config->getRabbitmqTopicName(),
+                'moskito.' . $snapshot->getSnapshotId()
+                );
 
         }
 

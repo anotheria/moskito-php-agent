@@ -67,4 +67,9 @@ class PHPExecutionSnapshot extends PHPSnapshot
         $this->requestUri = $requestUri;
     }
 
+    public function getSnapshotId()
+    {
+        return 'execution';
+    }
+
 }
