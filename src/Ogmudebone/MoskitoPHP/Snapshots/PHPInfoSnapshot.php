@@ -12,7 +12,6 @@ class PHPInfoSnapshot extends PHPSnapshot
 
     private $phpVersion;
     private $hostName;
-    private $createdAt;
 
     /**
      * @param mixed $phpVersion
@@ -30,16 +29,17 @@ class PHPInfoSnapshot extends PHPSnapshot
         $this->hostName = $hostName;
     }
 
-    /**
-     * @param mixed $createdAt
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
     public function getProducerId()
     {
         return 'php-info';
     }
+
+    public function getValues()
+    {
+        return [
+            'phpVersion' => $this->phpVersion,
+            'hostname' => $this->hostName,
+        ];
+    }
+
 }

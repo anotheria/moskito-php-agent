@@ -57,4 +57,15 @@ class PHPExecutionSnapshot extends PHPSnapshot
         return 'php-execution';
     }
 
+    public function getValues()
+    {
+        return [
+            'executionStartTime' => $this->executionStartTime,
+            'executionEndTime' => $this->executionEndTime,
+            'memoryUsage' => $this->memoryUsage,
+            'peakMemoryUsage' => $this->peakMemoryUsage,
+            'requestUri' => $this->requestUri
+        ];
+    }
+
 }
