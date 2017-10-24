@@ -26,7 +26,7 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
     }
 
     public function addStat(Stat $stat){
-        $stats[$stat->getName()] = $stat;
+        $this->stats[$stat->getName()] = $stat;
         return $stat;
     }
 

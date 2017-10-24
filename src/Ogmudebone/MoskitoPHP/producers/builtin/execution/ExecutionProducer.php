@@ -34,7 +34,7 @@ class ExecutionProducer extends MoskitoPHPProducer
     }
 
     public function endCountExecutionTime(){
-        $this->currentRequestStat->setTotalTime($this->startTime - microtime(true));
+        $this->currentRequestStat->setTotalTime(microtime(true) - $this->startTime);
     }
 
     public function setError($error){
