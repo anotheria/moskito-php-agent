@@ -3,7 +3,6 @@
 namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
 use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
-use Ogmudebone\MoskitoPHP\producers\PHPExecutionStat;
 
 /**
  * Class ExecutionProducer
