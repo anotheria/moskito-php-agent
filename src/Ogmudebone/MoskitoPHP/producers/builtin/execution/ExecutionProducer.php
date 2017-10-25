@@ -3,7 +3,7 @@
 namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
 use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
-use Ogmudebone\MoskitoPHP\producers\PHPExecutionStats;
+use Ogmudebone\MoskitoPHP\producers\PHPExecutionStat;
 
 /**
  * Class ExecutionProducer
@@ -24,7 +24,7 @@ class ExecutionProducer extends MoskitoPHPProducer
     public function __construct(){
         parent::__construct('php-execution', 'php', 'php');
         $this->currentRequestStat = $this->getStat(
-            new PHPExecutionStats(
+            new PHPExecutionStat(
                  $_SERVER['REQUEST_URI']
             )
         );
