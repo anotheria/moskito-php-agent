@@ -22,7 +22,7 @@ class ExecutionProducer extends MoskitoPHPProducer
 
     public function __construct(){
         parent::__construct('php-execution', 'php', 'php');
-        $this->currentRequestStat = $this->getStat(
+        $this->currentRequestStat = $this->addStat(
             new PHPExecutionStat(
                  $_SERVER['REQUEST_URI']
             )
