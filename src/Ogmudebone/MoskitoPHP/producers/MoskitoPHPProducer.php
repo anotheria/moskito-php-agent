@@ -15,8 +15,6 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
     private $category;
     private $subsystem;
 
-    protected abstract function getMapperId();
-
     /** @var Stat[] $stats */
     private $stats = [];
 
@@ -48,7 +46,6 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
             'producerId' => $this->producerId,
             'category'   => $this->category,
             'subsystem'  => $this->subsystem,
-            'mapperId'   => $this->getMapperId(),
             'stats'      => $statsSerialized
         ];
     }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: submi
- * Date: 10/24/2017
- * Time: 5:26 PM
- */
 
 namespace Ogmudebone\MoskitoPHP\producers;
 

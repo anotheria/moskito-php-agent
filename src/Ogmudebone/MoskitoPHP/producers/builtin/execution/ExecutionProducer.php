@@ -1,9 +1,7 @@
 <?php
 
-
 namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
-use Ogmudebone\MoskitoPHP\Mappers;
 use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
 use Ogmudebone\MoskitoPHP\producers\PHPExecutionStats;
 
@@ -18,7 +16,7 @@ class ExecutionProducer extends MoskitoPHPProducer
 {
 
     /**
-     * @var \Ogmudebone\MoskitoPHP\producers\PHPExecutionStats
+     * @var PHPExecutionStat
      */
     private $currentRequestStat;
     private $startTime = 0;
@@ -47,11 +45,6 @@ class ExecutionProducer extends MoskitoPHPProducer
 
     public function setError($error){
         $this->currentRequestStat->setError($error);
-    }
-
-    protected function getMapperId()
-    {
-        return Mappers::SERVICE_REQUEST;
     }
 
 }
