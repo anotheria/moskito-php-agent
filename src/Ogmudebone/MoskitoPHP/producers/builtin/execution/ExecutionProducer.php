@@ -2,7 +2,9 @@
 
 namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
+use Litipk\BigNumbers\Decimal;
 use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
+use PHP\Math\BigInteger\BigInteger;
 
 /**
  * Class ExecutionProducer
@@ -34,11 +36,12 @@ class ExecutionProducer extends MoskitoPHPProducer
     }
 
     public function endCountExecutionTime(){
+        $floatExecTimeSec = Decimal::fromFloat(microtime(true) - $this->startTime);
+        $floatExecTimeNano = $floatExecTimeSec->mul(Decimal::fromInteger(1000000));
+        $floatExecTimeNano->round();
+
         $this->currentRequestStat->setTotalTime(
-            // PHP has no long, but it can return msec time in float
-            // so it possible to count execution time in milliseconds in float and
-            // cast it to int as milliseconds
-            (int)((microtime(true) - $this->startTime) * 1000)
+            (string)$floatExecTimeNano
         );
     }
 
