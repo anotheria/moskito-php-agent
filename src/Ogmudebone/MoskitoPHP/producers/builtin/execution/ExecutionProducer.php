@@ -37,10 +37,9 @@ class ExecutionProducer extends MoskitoPHPProducer
     public function endCountExecutionTime(){
         $floatExecTimeSec = Decimal::fromFloat(microtime(true) - $this->startTime);
         $floatExecTimeNano = $floatExecTimeSec->mul(Decimal::fromInteger(1000000));
-        $floatExecTimeNano->round();
 
         $this->currentRequestStat->setTotalTime(
-            (string)$floatExecTimeNano
+            $floatExecTimeNano->round()
         );
     }
 
