@@ -45,7 +45,6 @@ class MoskitoPHP
         );
 
         $channel = $connection->channel();
-echo $config->getRabbitmqQueueName();
         $channel->queue_declare($config->getRabbitmqQueueName(),
             false, false, false, false
         );
