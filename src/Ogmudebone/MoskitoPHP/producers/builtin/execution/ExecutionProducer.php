@@ -4,7 +4,6 @@ namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
 use Litipk\BigNumbers\Decimal;
 use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
-use PHP\Math\BigInteger\BigInteger;
 
 /**
  * Class ExecutionProducer
@@ -26,7 +25,7 @@ class ExecutionProducer extends MoskitoPHPProducer
         parent::__construct('php-execution', 'php', 'php');
         $this->currentRequestStat = $this->addStat(
             new PHPExecutionStat(
-                 $_SERVER['REQUEST_URI']
+                 array_key_exists('REQUEST_URI',$_SERVER) ? $_SERVER['REQUEST_URI'] : 'Undefined'
             )
         );
     }
