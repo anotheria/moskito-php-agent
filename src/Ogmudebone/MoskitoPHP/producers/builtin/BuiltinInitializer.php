@@ -14,7 +14,7 @@ class BuiltinInitializer
     {
 
         $currentURI = array_key_exists('REQUEST_URI', $_SERVER)
-            ? $_SERVER['REQUEST_URI']
+            ? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
             : 'Undefined';
 
         $executionProducer = new ServiceOrientedProducer(
