@@ -58,11 +58,6 @@ class MoskitoPHP
     private function __construct()
     {
         $this->producersRepository = new ProducersRepository();
-        BuiltinInitializer::initialize();
-        $instance = $this;
-        register_shutdown_function(function () use ($instance) {
-            $instance->sendSnapshots();
-        });
     }
 
     /**
@@ -71,8 +66,17 @@ class MoskitoPHP
     public static function getInstance()
     {
 
-        if(MoskitoPHP::$instance != null) {
+        if(MoskitoPHP::$instance == null) {
+
             MoskitoPHP::$instance = new MoskitoPHP();
+            BuiltinInitializer::initialize();
+
+            $instance = MoskitoPHP::$instance;
+
+            register_shutdown_function(function () use ($instance) {
+                $instance->sendSnapshots();
+            });
+
         }
 
         return self::$instance;
