@@ -25,15 +25,18 @@ class Stat implements \JsonSerializable
         $this->name = $name;
     }
 
-    public function setValue($name, $value){
+    public function setValue($name, $value)
+    {
         $this->values[$name] = $value;
     }
 
-    public function getValue($name){
+    public function getValue($name)
+    {
         return $this->values[$name];
     }
 
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 

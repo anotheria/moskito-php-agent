@@ -2,11 +2,15 @@
 
 namespace Ogmudebone\MoskitoPHP;
 
-use Ogmudebone\MoskitoPHP\producers\builtin\ExecutionProducer;
+use Ogmudebone\MoskitoPHP\producers\builtin\BuiltinInitializer;
 use Ogmudebone\MoskitoPHP\producers\ProducersRepository;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
+/**
+ * Class MoskitoPHP
+ * @package Ogmudebone\MoskitoPHP
+ */
 class MoskitoPHP
 {
 
@@ -16,24 +20,9 @@ class MoskitoPHP
     private static $instance;
 
     private $producersRepository;
-    /**
-     * @var ExecutionProducer $executionProducer
-     */
-    private $executionProducer;
 
-    public static function init(){
-
-        MoskitoPHP::$instance = new MoskitoPHP();
-        $instance = MoskitoPHP::$instance;
-
-        register_shutdown_function(function() use ($instance) {
-            $instance->executionProducer->endCountExecutionTime();
-            $instance->sendSnapshots();
-        });
-
-    }
-
-    private function sendSnapshots(){
+    private function sendSnapshots()
+    {
 
         $config = MoskitoPHPConfig::getInstance();
 
@@ -69,10 +58,11 @@ class MoskitoPHP
     private function __construct()
     {
         $this->producersRepository = new ProducersRepository();
-        $this->executionProducer = $this->producersRepository->addProducer(
-            new ExecutionProducer()
-        );
-        $this->executionProducer->startCountExecutionTime();
+        BuiltinInitializer::initialize();
+        $instance = $this;
+        register_shutdown_function(function () use ($instance) {
+            $instance->sendSnapshots();
+        });
     }
 
     /**
@@ -80,7 +70,21 @@ class MoskitoPHP
      */
     public static function getInstance()
     {
+
+        if(MoskitoPHP::$instance != null) {
+            MoskitoPHP::$instance = new MoskitoPHP();
+        }
+
         return self::$instance;
+
+    }
+
+    /**
+     * @return ProducersRepository
+     */
+    public function getProducersRepository()
+    {
+        return $this->producersRepository;
     }
 
 }

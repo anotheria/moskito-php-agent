@@ -25,12 +25,18 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
         $this->subsystem = $subsystem;
     }
 
-    public function addStat(Stat $stat){
+    /**
+     * @param Stat $stat
+     * @return Stat
+     */
+    protected function addStat(Stat $stat)
+    {
         $this->stats[$stat->getName()] = $stat;
         return $stat;
     }
 
-    public function getStat($name){
+    protected function getStat($name)
+    {
 
         if(!array_key_exists($name, $this->stats))
             return null;

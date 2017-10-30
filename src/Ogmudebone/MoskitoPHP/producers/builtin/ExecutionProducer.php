@@ -15,19 +15,12 @@ use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
 class ExecutionProducer extends MoskitoPHPProducer
 {
 
-    /**
-     * @var PHPExecutionStat
-     */
-    private $currentRequestStat;
-    private $startTime = 0;
-
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct('php-execution', 'php', 'php');
         $this->currentRequestStat = $this->addStat(
-            new PHPExecutionStat(
-                 array_key_exists('REQUEST_URI',$_SERVER)             ?
-                     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) :
-                     'Undefined'
+            new ServiceStat(
+
             )
         );
     }

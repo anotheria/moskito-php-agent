@@ -24,11 +24,13 @@ class ProducersRepository
      * @param string $name producer name
      * @return MoskitoPHPProducer|null
      */
-    public function getProducer($name){
+    public function getProducer($name)
+    {
         return $this->producers[$name];
     }
 
-    public function addProducer(MoskitoPHPProducer $producer){
+    public function addProducer(MoskitoPHPProducer $producer)
+    {
         $this->producers[] = $producer;
         return $producer;
     }

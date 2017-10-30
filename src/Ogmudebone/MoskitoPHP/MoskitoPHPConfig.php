@@ -62,7 +62,8 @@ class MoskitoPHPConfig
     /**
      * @return MoskitoPHPConfig
      */
-    public static function getInstance(){
+    public static function getInstance()
+    {
 
         if(MoskitoPHPConfig::$instance == null){
             MoskitoPHPConfig::$instance = new MoskitoPHPConfig();
