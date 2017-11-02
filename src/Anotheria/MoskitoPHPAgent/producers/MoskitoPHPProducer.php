@@ -1,6 +1,6 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP\producers;
+namespace Anotheria\MoskitoPHPAgent\producers;
 
 /**
  * Class MoskitoPHPProducer

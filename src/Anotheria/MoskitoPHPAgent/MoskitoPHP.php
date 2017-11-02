@@ -1,9 +1,9 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP;
+namespace Anotheria\MoskitoPHPAgent;
 
-use Ogmudebone\MoskitoPHP\producers\builtin\BuiltinInitializer;
-use Ogmudebone\MoskitoPHP\producers\ProducersRepository;
+use Anotheria\MoskitoPHPAgent\producers\builtin\BuiltinInitializer;
+use Anotheria\MoskitoPHPAgent\producers\ProducersRepository;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 

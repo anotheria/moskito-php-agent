@@ -1,10 +1,10 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP\producers\builtin;
+namespace Anotheria\MoskitoPHPAgent\producers\builtin;
 
-use Ogmudebone\MoskitoPHP\MoskitoPHP;
-use Ogmudebone\MoskitoPHP\producers\builtin\stats\ServiceStats;
-use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
+use Anotheria\MoskitoPHPAgent\MoskitoPHP;
+use Anotheria\MoskitoPHPAgent\producers\builtin\stats\ServiceStats;
+use Anotheria\MoskitoPHPAgent\producers\MoskitoPHPProducer;
 
 class ServiceOrientedProducer extends MoskitoPHPProducer
 {

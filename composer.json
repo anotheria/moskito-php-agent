@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Ogmudebone\\" : "src/"
+            "Anotheria\\" : "src/"
         },
         "files" : ["src/init.php"]
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP\producers\builtin;
+namespace Anotheria\MoskitoPHPAgent\producers\builtin;
 
 use Litipk\BigNumbers\Decimal;
-use Ogmudebone\MoskitoPHP\exceptions\ServiceWatcherException;
-use Ogmudebone\MoskitoPHP\producers\builtin\stats\ServiceStats;
+use Anotheria\MoskitoPHPAgent\exceptions\ServiceWatcherException;
+use Anotheria\MoskitoPHPAgent\producers\builtin\stats\ServiceStats;
 
 class ServiceWatcher
 {

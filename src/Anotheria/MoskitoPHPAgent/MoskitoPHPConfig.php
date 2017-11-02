@@ -1,6 +1,6 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP;
+namespace Anotheria\MoskitoPHPAgent;
 
 /**
  * Class MoskitoPHPConfig

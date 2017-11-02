@@ -1,3 +1,3 @@
 <?php
 // First getInstance() to initialize MoskitoPHP
-\Ogmudebone\MoskitoPHP\MoskitoPHP::getInstance();
+Anotheria\MoskitoPHPAgent\MoskitoPHP::getInstance();

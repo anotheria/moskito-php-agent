@@ -1,6 +1,6 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP\exceptions;
+namespace Anotheria\MoskitoPHPAgent\exceptions;
 
 use Throwable;
 

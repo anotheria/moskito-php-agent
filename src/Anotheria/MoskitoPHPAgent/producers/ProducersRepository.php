@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: submi
- * Date: 10/24/2017
- * Time: 5:23 PM
- */
 
-namespace Ogmudebone\MoskitoPHP\producers;
+namespace Anotheria\MoskitoPHPAgent\producers;
 
 /**
  * Class ProducersRepository

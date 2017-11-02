@@ -1,6 +1,6 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP\producers\builtin;
+namespace Anotheria\MoskitoPHPAgent\producers\builtin;
 
 class BuiltinInitializer
 {

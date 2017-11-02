@@ -1,6 +1,6 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP\producers\builtin\stats;
+namespace Anotheria\MoskitoPHPAgent\producers\builtin\stats;
 
 class ExecutionStats extends ServiceStats
 {

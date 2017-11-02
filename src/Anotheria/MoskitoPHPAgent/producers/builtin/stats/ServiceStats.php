@@ -1,8 +1,8 @@
 <?php
 
-namespace Ogmudebone\MoskitoPHP\producers\builtin\stats;
+namespace Anotheria\MoskitoPHPAgent\producers\builtin\stats;
 
-use Ogmudebone\MoskitoPHP\producers\Stats;
+use Anotheria\MoskitoPHPAgent\producers\Stats;
 
 /**
  * Class PHPExecutionStats
