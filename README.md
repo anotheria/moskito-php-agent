@@ -6,7 +6,7 @@ This package available through composer. Add repository to your composer.json:
 repositories: [
    {
               "type": "vcs",
-              "url": "https://github.com/ogmudbone/moskito-php-test"
+              "url": "https://github.com/anotheria/moskito-php-agent"
    }
 ]
 ```
