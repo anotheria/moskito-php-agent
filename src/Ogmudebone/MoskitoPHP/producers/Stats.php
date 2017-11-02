@@ -8,7 +8,7 @@ namespace Ogmudebone\MoskitoPHP\producers;
  *
  * Producer stat class
  */
-class Stat implements \JsonSerializable
+class Stats implements \JsonSerializable
 {
 
     /**

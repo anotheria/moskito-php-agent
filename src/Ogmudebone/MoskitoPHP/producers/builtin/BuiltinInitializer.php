@@ -13,19 +13,14 @@ class BuiltinInitializer
     private static function initializeScriptExecutionProducer()
     {
 
-        $currentURI = array_key_exists('REQUEST_URI', $_SERVER)
-            ? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
-            : 'Undefined';
+        $executionProducer = new ExecutionProducer();
 
-        $executionProducer = new ServiceOrientedProducer(
-            'script-execution', 'php', 'php'
-        );
-
-        $executionWatcher = $executionProducer->getWatcher($currentURI);
+        $executionWatcher = $executionProducer->getExecutionWatcher();
         $executionWatcher->start();
 
-        register_shutdown_function(function() use ($executionWatcher) {
+        register_shutdown_function(function() use ($executionWatcher, $executionProducer) {
             $executionWatcher->end();
+            $executionProducer->updateMemoryUsage();
         });
 
     }

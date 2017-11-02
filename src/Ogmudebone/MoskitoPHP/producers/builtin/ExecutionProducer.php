@@ -2,44 +2,50 @@
 
 namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
-use Litipk\BigNumbers\Decimal;
-use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
+use Ogmudebone\MoskitoPHP\producers\builtin\stats\ExecutionStats;
 
 /**
  * Class ExecutionProducer
  * @package Ogmudebone\MoskitoPHP\producers\builtin
  *
  * Builtin producer for monitoring current server request
- * execution time.
+ * execution time and memory usage.
  */
-class ExecutionProducer extends MoskitoPHPProducer
+class ExecutionProducer extends ServiceOrientedProducer
 {
+
+    /**
+     * @var ExecutionStats $requestStats
+     */
+    private $requestStats;
 
     public function __construct()
     {
         parent::__construct('php-execution', 'php', 'php');
-        $this->currentRequestStat = $this->addStat(
-            new ServiceStat(
 
-            )
+        $currentURI = array_key_exists('REQUEST_URI', $_SERVER)
+            ? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+            : 'Undefined';
+
+        $this->requestStats = $this->addStat(
+            new ExecutionStats($currentURI)
         );
+
     }
 
-    public function startCountExecutionTime(){
-        $this->startTime = microtime(true);
+    public function getExecutionWatcher()
+    {
+        return new ServiceWatcher($this->requestStats);
     }
 
-    public function endCountExecutionTime(){
-        $floatExecTimeSec = Decimal::fromFloat(microtime(true) - $this->startTime);
-        $floatExecTimeNano = $floatExecTimeSec->mul(Decimal::fromInteger( 1000 * 1000 * 1000));
-
-        $this->currentRequestStat->setTotalTime(
-            (string)$floatExecTimeNano->round()
-        );
+    public function updateMemoryUsage()
+    {
+        $this->requestStats->setMemoryUsed(memory_get_peak_usage(true));
     }
 
-    public function setError($error){
-        $this->currentRequestStat->setError($error);
+    protected function getMapperId()
+    {
+        return "phpExecution";
     }
 
 }

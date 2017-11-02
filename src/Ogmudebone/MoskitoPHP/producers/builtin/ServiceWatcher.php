@@ -4,7 +4,7 @@ namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
 use Litipk\BigNumbers\Decimal;
 use Ogmudebone\MoskitoPHP\exceptions\ServiceWatcherException;
-use Ogmudebone\MoskitoPHP\producers\builtin\stats\ServiceStat;
+use Ogmudebone\MoskitoPHP\producers\builtin\stats\ServiceStats;
 
 class ServiceWatcher
 {
@@ -17,7 +17,7 @@ class ServiceWatcher
     private $state = ServiceWatcher::STATE_NONE;
     private $startTime;
 
-    public function __construct(ServiceStat $stat)
+    public function __construct(ServiceStats $stat)
     {
         $this->stat = $stat;
     }

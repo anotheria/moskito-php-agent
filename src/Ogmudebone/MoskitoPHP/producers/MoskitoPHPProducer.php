@@ -15,7 +15,7 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
     private $category;
     private $subsystem;
 
-    /** @var Stat[] $stats */
+    /** @var Stats[] $stats */
     private $stats = [];
 
     protected function __construct($producerId, $category, $subsystem)
@@ -26,10 +26,10 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
     }
 
     /**
-     * @param Stat $stat
-     * @return Stat
+     * @param Stats $stat
+     * @return Stats
      */
-    protected function addStat(Stat $stat)
+    protected function addStat(Stats $stat)
     {
         $this->stats[$stat->getName()] = $stat;
         return $stat;
@@ -57,6 +57,7 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
             'producerId' => $this->producerId,
             'category'   => $this->category,
             'subsystem'  => $this->subsystem,
+            'mapperId'   => $this->getMapperId(),
             'stats'      => $statsSerialized
         ];
     }
@@ -84,5 +85,7 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
     {
         return $this->subsystem;
     }
+
+    protected abstract function getMapperId();
 
 }

@@ -2,9 +2,8 @@
 
 namespace Ogmudebone\MoskitoPHP\producers\builtin;
 
-
 use Ogmudebone\MoskitoPHP\MoskitoPHP;
-use Ogmudebone\MoskitoPHP\producers\builtin\stats\ServiceStat;
+use Ogmudebone\MoskitoPHP\producers\builtin\stats\ServiceStats;
 use Ogmudebone\MoskitoPHP\producers\MoskitoPHPProducer;
 
 class ServiceOrientedProducer extends MoskitoPHPProducer
@@ -20,11 +19,17 @@ class ServiceOrientedProducer extends MoskitoPHPProducer
     {
 
         /**
-         * @var ServiceStat $stat
+         * @var ServiceStats $stat
          */
-        $stat = $this->addStat(new ServiceStat($statName));
+        $stat = $this->addStat(new ServiceStats($statName));
 
         return new ServiceWatcher($stat);
+
+    }
+
+    protected function getMapperId()
+    {
+        return "service";
     }
 
 }

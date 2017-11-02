@@ -2,7 +2,7 @@
 
 namespace Ogmudebone\MoskitoPHP\producers\builtin\stats;
 
-use Ogmudebone\MoskitoPHP\producers\Stat;
+use Ogmudebone\MoskitoPHP\producers\Stats;
 
 /**
  * Class PHPExecutionStats
@@ -11,7 +11,7 @@ use Ogmudebone\MoskitoPHP\producers\Stat;
  * Statistics for single server request.
  * Currently contains only execution time and error statistics.
  */
-class ServiceStat extends Stat
+class ServiceStats extends Stats
 {
 
     public function __construct($name)
