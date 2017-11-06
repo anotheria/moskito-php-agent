@@ -1,6 +1,6 @@
 <?php
 
-namespace Anotheria\MoskitoPHPAgent\producers\builtin;
+namespace Anotheria\MoskitoPHPAgent\producers\impl;
 
 use Litipk\BigNumbers\Decimal;
 use Anotheria\MoskitoPHPAgent\exceptions\ServiceWatcherException;

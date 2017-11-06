@@ -2,6 +2,8 @@
 
 namespace Anotheria\MoskitoPHPAgent\producers\builtin\stats;
 
+use Anotheria\MoskitoPHPAgent\producers\impl\stats\ServiceStats;
+
 class ExecutionStats extends ServiceStats
 {
 

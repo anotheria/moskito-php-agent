@@ -1,8 +1,11 @@
 <?php
 
 namespace Anotheria\MoskitoPHPAgent\producers\builtin;
-
 use Anotheria\MoskitoPHPAgent\producers\builtin\stats\ExecutionStats;
+use Anotheria\MoskitoPHPAgent\producers\impl\ServiceOrientedProducer;
+use Anotheria\MoskitoPHPAgent\producers\impl\ServiceWatcher;
+use Anotheria\MoskitoPHPAgent\producers\impl\stats\ServiceStats;
+
 
 /**
  * Class ExecutionProducer
@@ -27,7 +30,7 @@ class ExecutionProducer extends ServiceOrientedProducer
             ? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
             : 'Undefined';
 
-        $this->requestStats = $this->addStat(
+        $this->requestStats = $this->addStats(
             new ExecutionStats($currentURI)
         );
 
@@ -45,7 +48,7 @@ class ExecutionProducer extends ServiceOrientedProducer
 
     protected function getMapperId()
     {
-        return "phpExecution";
+        return "ExecutionStatsMapper";
     }
 
 }

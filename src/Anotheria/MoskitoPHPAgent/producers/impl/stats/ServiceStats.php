@@ -1,6 +1,6 @@
 <?php
 
-namespace Anotheria\MoskitoPHPAgent\producers\builtin\stats;
+namespace Anotheria\MoskitoPHPAgent\producers\impl\stats;
 
 use Anotheria\MoskitoPHPAgent\producers\Stats;
 

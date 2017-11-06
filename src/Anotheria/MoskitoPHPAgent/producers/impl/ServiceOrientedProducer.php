@@ -1,6 +1,6 @@
 <?php
 
-namespace Anotheria\MoskitoPHPAgent\producers\builtin;
+namespace Anotheria\MoskitoPHPAgent\producers\impl;
 
 use Anotheria\MoskitoPHPAgent\MoskitoPHP;
 use Anotheria\MoskitoPHPAgent\producers\builtin\stats\ServiceStats;
@@ -21,7 +21,7 @@ class ServiceOrientedProducer extends MoskitoPHPProducer
         /**
          * @var ServiceStats $stat
          */
-        $stat = $this->addStat(new ServiceStats($statName));
+        $stat = $this->addStats(new ServiceStats($statName));
 
         return new ServiceWatcher($stat);
 
@@ -29,7 +29,7 @@ class ServiceOrientedProducer extends MoskitoPHPProducer
 
     protected function getMapperId()
     {
-        return "service";
+        return "ServiceStatsMapper";
     }
 
 }
