@@ -2,6 +2,7 @@
 
 namespace Anotheria\MoskitoPHPAgent\producers\impl;
 
+use Anotheria\MoskitoPHPAgent\MoskitoPHP;
 use Anotheria\MoskitoPHPAgent\producers\impl\stats\CounterStats;
 use Anotheria\MoskitoPHPAgent\producers\MoskitoPHPProducer;
 
@@ -11,6 +12,7 @@ class CounterProducer extends MoskitoPHPProducer
     public function __construct($producerId, $category, $subsystem)
     {
         parent::__construct($producerId, $category, $subsystem);
+        MoskitoPHP::getInstance()->getProducersRepository()->addProducer($this);
     }
 
     protected function getMapperId()

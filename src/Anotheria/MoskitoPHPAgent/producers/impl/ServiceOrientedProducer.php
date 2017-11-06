@@ -3,7 +3,7 @@
 namespace Anotheria\MoskitoPHPAgent\producers\impl;
 
 use Anotheria\MoskitoPHPAgent\MoskitoPHP;
-use Anotheria\MoskitoPHPAgent\producers\builtin\stats\ServiceStats;
+use Anotheria\MoskitoPHPAgent\producers\impl\stats\ServiceStats;
 use Anotheria\MoskitoPHPAgent\producers\MoskitoPHPProducer;
 
 class ServiceOrientedProducer extends MoskitoPHPProducer
