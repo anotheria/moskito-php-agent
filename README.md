@@ -13,6 +13,6 @@ repositories: [
 And dependency in require section:
 ```
 require : [
-  "ogmudebone/moskito-php" : "dev-master"
+  "anotheria/moskito-php" : "dev-master"
 ]
 ```
