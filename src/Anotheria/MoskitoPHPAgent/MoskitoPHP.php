@@ -19,22 +19,28 @@ class MoskitoPHP
      */
     private static $instance;
 
+    /**
+     * @var ProducersRepository $producersRepository
+     */
     private $producersRepository;
+
+    /**
+     * @var MoskitoPHPConfig $config
+     */
+    private $config;
 
     private function sendSnapshots()
     {
 
-        $config = MoskitoPHPConfig::getInstance();
-
         $connection = new AMQPStreamConnection(
-            $config->getRabbitmqHost(),
-            $config->getRabbitmqPort(),
-            $config->getRabbitmqLogin(),
-            $config->getRabbitmqPassword()
+            $this->config->getRabbitmqHost(),
+            $this->config->getRabbitmqPort(),
+            $this->config->getRabbitmqLogin(),
+            $this->config->getRabbitmqPassword()
         );
 
         $channel = $connection->channel();
-        $channel->queue_declare($config->getRabbitmqQueueName(),
+        $channel->queue_declare($this->config->getRabbitmqQueueName(),
             false, false, false, false
         );
 
@@ -44,7 +50,7 @@ class MoskitoPHP
             $channel->batch_basic_publish(
                 $message,
                 '',
-                $config->getRabbitmqQueueName()
+                $this->config->getRabbitmqQueueName()
                 );
 
         }
@@ -57,6 +63,7 @@ class MoskitoPHP
 
     private function __construct()
     {
+        $this->config = MoskitoPHPConfig::getInstance();
         $this->producersRepository = new ProducersRepository();
     }
 
@@ -69,9 +76,9 @@ class MoskitoPHP
         if(MoskitoPHP::$instance == null) {
 
             MoskitoPHP::$instance = new MoskitoPHP();
-            BuiltinInitializer::initialize();
 
             $instance = MoskitoPHP::$instance;
+            BuiltinInitializer::initialize($instance->config);
 
             register_shutdown_function(function () use ($instance) {
                 $instance->sendSnapshots();
