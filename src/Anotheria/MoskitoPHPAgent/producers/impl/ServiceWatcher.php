@@ -4,7 +4,7 @@ namespace Anotheria\MoskitoPHPAgent\producers\impl;
 
 use Litipk\BigNumbers\Decimal;
 use Anotheria\MoskitoPHPAgent\exceptions\ServiceWatcherException;
-use Anotheria\MoskitoPHPAgent\producers\builtin\stats\ServiceStats;
+use Anotheria\MoskitoPHPAgent\producers\impl\stats\ServiceStats;
 
 class ServiceWatcher
 {
