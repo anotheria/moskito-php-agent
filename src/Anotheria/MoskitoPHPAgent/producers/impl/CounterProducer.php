@@ -18,7 +18,7 @@ class CounterProducer extends MoskitoPHPProducer
         return 'CounterStatsMapper';
     }
 
-    public function incStats($name, $by)
+    public function incStats($name, $by = 1)
     {
 
         if($this->getStats($name) == null)
