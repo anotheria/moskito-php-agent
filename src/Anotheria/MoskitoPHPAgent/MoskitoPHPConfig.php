@@ -15,6 +15,8 @@ namespace Anotheria\MoskitoPHPAgent;
 class MoskitoPHPConfig
 {
 
+    const FEATURE_EXECUTION_PRODUCER = 'execution-producer';
+
     const PATH_TO_ROOT = __DIR__ . "../../../../../../../";
 
     /**
@@ -43,6 +45,11 @@ class MoskitoPHPConfig
      */
     private $rabbitmqQueueName;
 
+    /**
+     * @var array list of builtin features to be enabled
+     */
+    private $builtin = [];
+
     private function __construct()
     {
 
@@ -56,6 +63,7 @@ class MoskitoPHPConfig
         $this->rabbitmqLogin     =  $configJson['rabbitmq-login'];
         $this->rabbitmqPassword  =  $configJson['rabbitmq-password'];
         $this->rabbitmqQueueName =  $configJson['rabbitmq-queue-name'];
+        $this->builtin           =  $configJson['builtin'];
 
     }
 
@@ -111,6 +119,16 @@ class MoskitoPHPConfig
     public function getRabbitmqLogin()
     {
         return $this->rabbitmqLogin;
+    }
+
+    /**
+     * @param $featureName string name of feature to check availability
+     * @return bool
+     */
+    public function isBuiltinFeatureEnabled($featureName)
+    {
+        $featureKey = 'enable-' . $featureName;
+        return array_key_exists($featureKey, $this->builtin) && $this->builtin[$featureKey] == true;
     }
 
 }

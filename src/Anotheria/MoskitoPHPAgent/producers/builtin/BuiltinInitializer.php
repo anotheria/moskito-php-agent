@@ -2,12 +2,15 @@
 
 namespace Anotheria\MoskitoPHPAgent\producers\builtin;
 
+use Anotheria\MoskitoPHPAgent\MoskitoPHPConfig;
+
 class BuiltinInitializer
 {
 
-    public static function initialize()
+    public static function initialize(MoskitoPHPConfig $config)
     {
-        self::initializeScriptExecutionProducer();
+        if($config->isBuiltinFeatureEnabled(MoskitoPHPConfig::FEATURE_EXECUTION_PRODUCER))
+            self::initializeScriptExecutionProducer();
     }
 
     private static function initializeScriptExecutionProducer()
