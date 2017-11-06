@@ -4,7 +4,7 @@
   "rabbitmq-login" : "guest",
   "rabbitmq-password" : "guest",
   "rabbitmq-queue-name" : "moskito-php",
-  "builtin" : {
+  "features" : {
     "enable-execution-producer" : true
   }
 }

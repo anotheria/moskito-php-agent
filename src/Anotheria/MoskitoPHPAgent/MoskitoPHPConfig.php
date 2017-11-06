@@ -17,8 +17,6 @@ class MoskitoPHPConfig
 
     const FEATURE_EXECUTION_PRODUCER = 'execution-producer';
 
-    const PATH_TO_ROOT = __DIR__ . "../../../../../../../";
-
     /**
      * @var MoskitoPHPConfig $instance
      */
@@ -53,8 +51,10 @@ class MoskitoPHPConfig
     private function __construct()
     {
 
+        $PATH_TO_ROOT = __DIR__ . "../../../../../../../";
+
         $configJson = json_decode(
-            file_get_contents(MoskitoPHPConfig::PATH_TO_ROOT . 'moskito-php-config.json'),
+            file_get_contents($PATH_TO_ROOT . 'moskito-php-config.json'),
             true
         );
 
@@ -63,7 +63,7 @@ class MoskitoPHPConfig
         $this->rabbitmqLogin     =  $configJson['rabbitmq-login'];
         $this->rabbitmqPassword  =  $configJson['rabbitmq-password'];
         $this->rabbitmqQueueName =  $configJson['rabbitmq-queue-name'];
-        $this->builtin           =  $configJson['builtin'];
+        $this->builtin           =  $configJson['features'];
 
     }
 
