@@ -61,7 +61,7 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
             'subsystem'  => $this->subsystem,
             'mapperId'   => $this->getMapperId(),
             'stats'      => $statsSerialized,
-            'timestamp'  => microtime()
+            'timestamp'  => microtime(true)
         ];
 
     }
