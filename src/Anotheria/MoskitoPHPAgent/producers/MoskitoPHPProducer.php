@@ -55,21 +55,15 @@ abstract class MoskitoPHPProducer implements \JsonSerializable
         }
 
 
-        $microtime = microtime();
-        $comps = explode(' ', $microtime);
-
-        // Note: Using a string here to prevent loss of precision
-        // in case of "overflow" (PHP converts it to a double)
-        $producerTimestamp = sprintf('%d%03d', $comps[1], $comps[0] * 1000);
-
         return [
             'producerId' => $this->producerId,
             'category'   => $this->category,
             'subsystem'  => $this->subsystem,
             'mapperId'   => $this->getMapperId(),
             'stats'      => $statsSerialized,
-            'timestamp'  => $producerTimestamp
+            'timestamp'  => microtime()
         ];
+
     }
 
     /**
